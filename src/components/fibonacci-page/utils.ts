@@ -1,16 +1,19 @@
 const calculateFibonacci = (number: number, cache: number[] = []): number => {
-	if (cache[number]) {
-		return cache[number]
+	const newCache = [...cache]
+
+	if (newCache[number]) {
+		return newCache[number]
 	}
+
 	if (number <= 2) {
 		return 1
 	}
 
-	cache[number] =
-		calculateFibonacci(number - 1, cache) +
-		calculateFibonacci(number - 2, cache)
+	newCache[number] =
+		calculateFibonacci(number - 1, newCache) +
+		calculateFibonacci(number - 2, newCache)
 
-	return cache[number]
+	return newCache[number]
 }
 
 export const getFibonacci = (length: number) =>

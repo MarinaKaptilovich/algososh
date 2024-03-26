@@ -40,7 +40,7 @@ export const StringComponent: React.FC = () => {
 	}
 	return (
 		<SolutionLayout title='Строка'>
-			<div className={styles.main}>
+			<main className={styles.main}>
 				<form
 					onSubmit={e => {
 						e.preventDefault()
@@ -75,7 +75,7 @@ export const StringComponent: React.FC = () => {
 						/>
 					))}
 				</div>
-			</div>
+			</main>
 		</SolutionLayout>
 	)
 }

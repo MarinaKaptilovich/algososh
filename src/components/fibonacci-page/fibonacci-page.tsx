@@ -23,7 +23,7 @@ export const FibonacciPage: React.FC = () => {
 	}
 	return (
 		<SolutionLayout title='Последовательность Фибоначчи'>
-			<div className={styles.main}>
+			<main className={styles.main}>
 				<form
 					onSubmit={e => {
 						e.preventDefault()
@@ -56,7 +56,7 @@ export const FibonacciPage: React.FC = () => {
 						<Circle letter={String(item) || ''} key={index} index={index} />
 					))}
 				</div>
-			</div>
+			</main>
 		</SolutionLayout>
 	)
 }
