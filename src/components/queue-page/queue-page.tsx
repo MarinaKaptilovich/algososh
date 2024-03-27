@@ -68,19 +68,15 @@ export const QueuePage: React.FC = () => {
 						<Button
 							type='submit'
 							text='Добавить'
-							isLoader={button.add === 'loading' ? true : false}
-							disabled={
-								queue.isFull() || button.add === 'disabled' ? true : false
-							}
+							isLoader={button.add === 'loading'}
+							disabled={queue.isFull() || button.add === 'disabled'}
 						/>
 						<Button
 							type='button'
 							text='Удалить'
 							onClick={handleDequeue}
-							isLoader={button.delete === 'loading' ? true : false}
-							disabled={
-								queue.isEmpty() || button.delete === 'disabled' ? true : false
-							}
+							isLoader={button.delete === 'loading'}
+							disabled={queue.isEmpty() || button.delete === 'disabled'}
 						/>
 					</form>
 
@@ -88,9 +84,7 @@ export const QueuePage: React.FC = () => {
 						type='button'
 						text='Очистить'
 						onClick={clear}
-						disabled={
-							queue.isEmpty() || button.clear === 'disabled' ? true : false
-						}
+						disabled={queue.isEmpty() || button.clear === 'disabled'}
 					/>
 				</div>
 				<ul className={styles.circles}>
