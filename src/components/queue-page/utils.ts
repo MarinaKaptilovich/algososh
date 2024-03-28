@@ -3,10 +3,10 @@ import { SHORT_DELAY_IN_MS } from '../../constants/delays'
 import { delay } from '../../utils'
 
 export class Queue<T> {
-	private container: (T | null)[]
-	private head = 0
-	private tail = 0
-	private length: number = 0
+	container: (T | null)[]
+	head = 0
+	tail = 0
+	length: number = 0
 
 	constructor(private size: number = 7) {
 		this.size = size
@@ -20,14 +20,15 @@ export class Queue<T> {
 
 		this.container[this.tail % this.size] = item
 		this.length++
-		this.tail = (this.tail + 1) % this.size
+		this.tail++
 	}
 
 	dequeue(): void {
 		if (this.length === 0) return
-		this.container[this.head] = null
+
+		this.container[this.head % this.size] = null
 		this.length--
-		this.head = (this.head + 1) % this.size
+		this.head++
 	}
 
 	getHead(): number {
@@ -39,7 +40,7 @@ export class Queue<T> {
 	}
 
 	list(): (T | null)[] {
-		return this.container.slice()
+		return [...this.container]
 	}
 
 	isFull() {
