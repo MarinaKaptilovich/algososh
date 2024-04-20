@@ -3,7 +3,7 @@ import { Button } from '../ui/button/button'
 import { Circle } from '../ui/circle/circle'
 import { Input } from '../ui/input/input'
 import { SolutionLayout } from '../ui/solution-layout/solution-layout'
-import styles from './lis-page.module.css'
+import styles from './list-page.module.css'
 import useList, { LinkedList, ListNode } from './utils'
 
 const linkedList = new LinkedList<String>()
@@ -79,6 +79,7 @@ export const ListPage: React.FC = () => {
 					<div className={styles.input_container}>
 						<Input
 							value={value}
+							id='value'
 							placeholder='Введите текст'
 							type='text'
 							maxLength={4}
@@ -88,18 +89,23 @@ export const ListPage: React.FC = () => {
 						/>
 						<Button
 							type='button'
+							id='adding'
 							text='Добавить в head'
 							onClick={handleAddHead}
 							isLoader={loading.addHead}
+							disabled={!value}
 						/>
 						<Button
 							type='button'
+							id='adding'
 							text='Добавить в tail'
 							onClick={handleAddTail}
 							isLoader={loading.addTail}
+							disabled={!value}
 						/>
 						<Button
 							type='button'
+							id='deleting'
 							text='Удалить из head'
 							onClick={handleDeleteHead}
 							isLoader={loading.deleteHead}
@@ -107,6 +113,7 @@ export const ListPage: React.FC = () => {
 						/>
 						<Button
 							type='button'
+							id='deleting'
 							text='Удалить из tail'
 							onClick={handleDeleteTail}
 							isLoader={loading.deleteTail}
@@ -116,6 +123,7 @@ export const ListPage: React.FC = () => {
 					<div className={styles.input_container}>
 						<Input
 							value={indexValue}
+							id='index'
 							placeholder='Введите индекс'
 							type='number'
 							min={0}
@@ -125,18 +133,21 @@ export const ListPage: React.FC = () => {
 						/>
 						<Button
 							type='button'
+							id='indexActions'
 							text='Добавить по индексу'
 							extraClass={styles.flex_grow}
 							onClick={handleAddByIndex}
 							isLoader={loading.addIndex}
+							disabled={!list.length || !indexValue}
 						/>
 						<Button
 							type='button'
+							id='indexActions'
 							text='Удалить по индексу'
 							extraClass={styles.flex_grow}
 							onClick={handleDeleteByIndex}
 							isLoader={loading.deleteIndex}
-							disabled={!list.length}
+							disabled={!list.length || !indexValue}
 						/>
 					</div>
 					<div className={styles.circles}>

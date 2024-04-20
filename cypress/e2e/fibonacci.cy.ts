@@ -1,17 +1,16 @@
 import { SHORT_DELAY_IN_MS } from '../../src/constants/delays'
-import { buttonSelector, inputSelector } from './constants'
+import { buttonSubmit, inputSelector } from './constants'
+
+const circles = () => cy.get('div[class^="fibonacci-page_circles"]').children()
 
 describe('Проверка Фибоначчи', () => {
-	const circles = () =>
-		cy.get('div[class^="fibonacci-page_circles"]').children()
-
 	beforeEach(() => {
 		cy.visit('/fibonacci')
 	})
 
 	it('при пустом поле ввода кнопка "Рассчитать" недоступна', () => {
 		cy.get(inputSelector).click()
-		cy.get(buttonSelector).should('be.disabled')
+		cy.get(buttonSubmit).should('be.disabled')
 	})
 
 	it('числа генерируются корректно', () => {
@@ -19,7 +18,7 @@ describe('Проверка Фибоначчи', () => {
 		const test = '5'
 
 		cy.get(inputSelector).type(test)
-		cy.get(buttonSelector).click()
+		cy.get(buttonSubmit).click()
 
 		cy.wait(SHORT_DELAY_IN_MS)
 
