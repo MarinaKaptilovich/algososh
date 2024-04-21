@@ -16,7 +16,7 @@ const addElements = (value: string) => {
 	cy.get(circleDefault).contains(value)
 }
 
-const removeElements = (value: string) => {
+const deleteElements = (value: string) => {
 	cy.contains('button', 'Удалить').click()
 	cy.get(circleChanging).contains(value)
 }
@@ -51,7 +51,7 @@ describe('Проверка Очереди', () => {
 	it('корректное удаление из очереди', () => {
 		values.forEach((item: string) => addElements(item))
 		cy.get(circleContent).as('circle')
-		removeElements(values[0])
+		deleteElements(values[0])
 		cy.get('@circle').each((element, index) => {
 			index === 0 && expect(element.text()).to.contain(values[0])
 			if (index === 1) {
