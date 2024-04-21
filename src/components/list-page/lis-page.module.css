@@ -1,0 +1,36 @@
+.main {
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	width: 952px;
+	display: flex;
+	flex-direction: column;
+}
+
+.input_container {
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+}
+
+.text_input {
+	flex-basis: 204px;
+}
+
+.flex_grow {
+	flex-grow: 1;
+}
+
+.circles {
+	display: flex;
+	margin-top: 90px;
+	align-items: center;
+	justify-content: center;
+}
+
+.circle {
+	display: flex;
+	align-items: center;
+}

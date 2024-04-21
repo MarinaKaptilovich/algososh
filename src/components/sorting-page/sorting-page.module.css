@@ -1,0 +1,38 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 980px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
+}
+
+.radio_buttons {
+	display: flex;
+	gap: 40px;
+	margin-right: 52px;
+}
+
+.sort_buttons {
+	display: flex;
+	margin-right: 80px;
+	gap: 12px;
+}
+
+.array {
+	display: flex;
+	gap: 10px;
+	align-items: end;
+	margin-top: 48px;
+}
