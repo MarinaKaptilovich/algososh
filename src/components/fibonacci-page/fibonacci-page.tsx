@@ -41,13 +41,13 @@ export const FibonacciPage: React.FC = () => {
 						type='number'
 						min={1}
 						max={19}
-						value={value ?? ''}
+						value={value}
 						onChange={e => setValue(e.currentTarget.value)}
 					/>
 					<Button
 						type='submit'
 						text='Рассчитать'
-						disabled={value === undefined}
+						disabled={!value}
 						isLoader={data.loading}
 					/>
 				</form>

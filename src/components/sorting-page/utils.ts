@@ -31,7 +31,7 @@ const swapElements = (
 export const sortByBubble = async (
 	arr: ArrayElement[],
 	direction: Direction,
-	setArray: React.Dispatch<React.SetStateAction<ArrayElement[]>>
+	setArray: Function
 ) => {
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = 0; j < arr.length - i - 1; j++) {
@@ -57,32 +57,37 @@ export const sortByBubble = async (
 }
 
 export const sortBySelection = async (
-	arr: Array<ArrayElement>,
+	arr: ArrayElement[],
 	direction: Direction,
-	setArray: React.Dispatch<React.SetStateAction<ArrayElement[]>>
-): Promise<void> => {
-	for (let i = 0; i < arr.length - 1; i++) {
-		let min = i
-		for (let j = i + 1; j < arr.length; j++) {
-			arr[i].state = arr[j].state = ElementStates.Changing
-			setArray([...arr])
-			await delay(DELAY_IN_MS)
+	setArray: Function
+) => {
+	if (arr.length < 3) {
+		setArray([...arr])
+	} else {
+		for (let i = 0; i < arr.length - 1; i++) {
+			let min = i
+			for (let j = i + 1; j < arr.length; j++) {
+				arr[i].state = arr[j].state = ElementStates.Changing
+				setArray([...arr])
+				await delay(DELAY_IN_MS)
 
-			if (
-				(direction === Direction.Ascending && arr[j].value < arr[min].value) ||
-				(direction === Direction.Descending && arr[j].value > arr[min].value)
-			) {
-				min = j
+				if (
+					(direction === Direction.Ascending &&
+						arr[j].value < arr[min].value) ||
+					(direction === Direction.Descending && arr[j].value > arr[min].value)
+				) {
+					min = j
+				}
+
+				arr[j].state = ElementStates.Default
+				setArray([...arr])
 			}
 
-			arr[j].state = ElementStates.Default
+			swapElements(arr, i, min)
+			arr[i].state = ElementStates.Modified
 			setArray([...arr])
 		}
-
-		swapElements(arr, i, min)
-		arr[i].state = ElementStates.Modified
+		arr[arr.length - 1].state = ElementStates.Modified
 		setArray([...arr])
 	}
-	arr[arr.length - 1].state = ElementStates.Modified
-	setArray([...arr])
 }

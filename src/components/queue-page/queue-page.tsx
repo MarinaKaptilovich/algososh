@@ -69,9 +69,7 @@ export const QueuePage: React.FC = () => {
 							type='submit'
 							text='Добавить'
 							isLoader={button.add === 'loading'}
-							disabled={
-								queue.isFull() || button.add === 'disabled' || queue.tail === 7
-							}
+							disabled={!value.length || queue.tail === 7}
 						/>
 						<Button
 							type='button'
